@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: minhwatu
+
+server:
+  port: 8080
+
+# 운영/로컬 프로파일 분기, DB·Redis·CORS 등은 후속 PR에서.
