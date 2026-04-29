@@ -1,0 +1,53 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java / Gradle
+.gradle/
+build/
+out/
+*.class
+*.jar
+*.war
+*.log
+
+# Maven (in case)
+target/
+
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+.vite/
+.cache/
+.parcel-cache/
+*.local
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Coverage / Reports
+coverage/
+.nyc_output/
+.eslintcache
+
+# Docker
+.docker/
+
+# Misc
+*.pid
+*.seed
+*.swp
