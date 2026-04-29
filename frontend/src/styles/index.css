@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/*
+ * 디자인 토큰 — frontend/preview/HANDOFF.md §C/§D 의 토큰을
+ * Tailwind v4의 @theme 디렉티브로 매핑한다.
+ *
+ * 명명 규칙:
+ *   --color-<role>[-<step>]   : 색상
+ *   --font-<role>             : 폰트 패밀리
+ *   --radius-<size>           : 둥근 모서리
+ *   --shadow-<role>           : 그림자
+ *   --spacing-<role>          : 간격(특수)
+ *   --animate-<name>          : 애니메이션
+ *
+ * 미정 토큰(다크 모드, painterly 추상화 등)은 마이그레이션 PR에서 추가.
+ */
+
+@theme {
+  /* ── 따뜻한 중성 ─────────────────────────────────────── */
+  --color-bg: #f1ebe0;
+  --color-bg-2: #ebe3d4;
+  --color-bg-3: #e3d9c6;
+  --color-bg-elev: #faf6ee;
+
+  --color-ink: #1b1a17;
+  --color-ink-2: #4a4740;
+  --color-ink-3: #6b6960;
+  --color-ink-4: #908d83;
+
+  --color-line: rgba(27, 26, 23, 0.1);
+  --color-line-2: rgba(27, 26, 23, 0.18);
+
+  /* ── 포인트(muted 톤) ─────────────────────────────── */
+  --color-maple: #a84235;
+  --color-maple-soft: #c46b5e;
+  --color-maple-bg: #f5e2dd;
+
+  --color-pine: #3a6647;
+  --color-pine-soft: #6b8c75;
+  --color-pine-bg: #dde6dd;
+
+  --color-paulownia: #b89456;
+  --color-paulownia-soft: #d4b884;
+  --color-paulownia-bg: #f1e6cc;
+
+  --color-rain: #3b4a6b;
+  --color-rain-soft: #6a7a9c;
+  --color-rain-bg: #d8dbe5;
+
+  /* ── 카드 면 ─────────────────────────────────────── */
+  --color-card-face: #f9f3e6;
+  --color-card-edge: #e8dec5;
+  --color-card-back: #6b1f1a;
+  --color-card-back-edge: #4a1611;
+
+  /* ── 폰트 ────────────────────────────────────────── */
+  --font-sans: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --font-serif: "Noto Serif KR", "Nanum Myeongjo", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ── 둥근 모서리 ─────────────────────────────────── */
+  --radius-card: 8px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* ── 그림자(따뜻한 갈색 베이스) ─────────────────── */
+  --shadow-soft: 0 1px 2px rgba(50, 38, 22, 0.06), 0 1px 1px rgba(50, 38, 22, 0.04);
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 2px 4px rgba(50, 38, 22, 0.08), 0 1px 1px
+    rgba(50, 38, 22, 0.06);
+  --shadow-lift: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 12px 24px rgba(50, 38, 22, 0.18), 0 4px 8px
+    rgba(50, 38, 22, 0.1);
+  --shadow-legal: 0 0 0 2px rgba(199, 160, 89, 0.55), 0 8px 18px rgba(199, 160, 89, 0.25);
+  --shadow-panel: 0 8px 24px rgba(50, 38, 22, 0.1), 0 2px 6px rgba(50, 38, 22, 0.06);
+
+  /* ── 카드 크기 ──────────────────────────────────── */
+  --spacing-card-w: 56px;
+  --spacing-card-h: 88px;
+  --spacing-card-w-lg: 72px;
+  --spacing-card-h-lg: 112px;
+  --spacing-card-w-sm: 40px;
+  --spacing-card-h-sm: 64px;
+
+  /* ── 카드 갭 ────────────────────────────────────── */
+  --spacing-card-gap: 6px;
+  --spacing-card-gap-2: 10px;
+  --spacing-card-gap-3: 14px;
+
+  /* ── 이징 ───────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── 애니메이션 ─────────────────────────────────── */
+  --animate-ring-pulse: ringPulse 1.4s ease-in-out infinite;
+  --animate-legal-pulse: legalPulse 1.6s ease-in-out infinite;
+  --animate-flip-reveal: flipReveal 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-capture-fly: captureFly 560ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-shelf-rise: shelfRise 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  --animate-modal-rise: modalRise 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── 키프레임 — @theme 바깥에서 정의 ─────────────────── */
+@keyframes ringPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(184, 148, 86, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(184, 148, 86, 0.05);
+  }
+}
+
+@keyframes legalPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes flipReveal {
+  0% {
+    transform: rotateY(180deg) scale(0.92);
+  }
+  60% {
+    transform: rotateY(0) scale(1.06);
+  }
+  100% {
+    transform: rotateY(0) scale(1);
+  }
+}
+
+@keyframes captureFly {
+  to {
+    transform: translate(var(--cap-x), var(--cap-y)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes shelfRise {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes modalRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── 글로벌 베이스 ───────────────────────────────────── */
+html,
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 한국어 줄바꿈을 단어 단위로 (음절 단위 분리 차단) */
+html[lang="ko"],
+:lang(ko) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 모션 감소 환경 자동 다운그레이드 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
