@@ -1,0 +1,131 @@
+/* card.css — HwatuCard interaction styles */
+
+.hwatu-card {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border-radius: var(--r-card);
+  display: inline-block;
+  position: relative;
+  filter: drop-shadow(var(--sh-card));
+  transition:
+    transform 280ms var(--ez-out),
+    filter 220ms var(--ez-out),
+    opacity 200ms var(--ez-out);
+  will-change: transform, filter;
+  outline: none;
+}
+
+.hwatu-card svg {
+  border-radius: var(--r-card);
+  display: block;
+}
+
+.hwatu-card.legal:hover {
+  transform: translateY(-8px) rotate(var(--card-rotate, 0deg)) !important;
+  filter: drop-shadow(var(--sh-card-lift));
+  z-index: 5;
+}
+.hwatu-card.legal:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
+.hwatu-card.illegal {
+  opacity: 0.42;
+  cursor: not-allowed;
+  filter: grayscale(0.4) drop-shadow(var(--sh-1));
+}
+.hwatu-card.illegal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-card);
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 6px,
+    rgba(27, 26, 23, 0.06) 6px 7px
+  );
+  pointer-events: none;
+}
+
+.hwatu-card.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.hwatu-card.selected {
+  transform: translateY(-12px) rotate(var(--card-rotate, 0deg)) !important;
+  filter: drop-shadow(var(--sh-card-legal));
+  z-index: 6;
+}
+
+.hwatu-card .hc-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 11px;
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 0 0 4px rgba(184, 148, 86, 0.18);
+  pointer-events: none;
+  animation: ringPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(184, 148, 86, 0.18); }
+  50%      { box-shadow: 0 0 0 8px rgba(184, 148, 86, 0.05); }
+}
+
+/* face-down */
+.hwatu-card.facedown {
+  cursor: default;
+  display: inline-block;
+  filter: drop-shadow(var(--sh-card));
+}
+
+/* legal-move pulse highlight on bottom field */
+.legal-target {
+  position: relative;
+}
+.legal-target::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 10px;
+  border: 1.5px dashed var(--accent-gold);
+  background: rgba(184, 148, 86, 0.08);
+  animation: legalPulse 1.6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+@keyframes legalPulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+/* throw / capture animation classes — applied transiently via JS */
+@keyframes throwToField {
+  0%   { transform: translate(0, 0) rotate(var(--card-rotate, 0deg)) scale(1); }
+  35%  { transform: translate(var(--throw-x), calc(var(--throw-y) * .4)) rotate(calc(var(--card-rotate, 0deg) + 8deg)) scale(1.04); }
+  100% { transform: translate(var(--throw-x), var(--throw-y)) rotate(var(--card-rotate, 0deg)) scale(1); }
+}
+@keyframes flipReveal {
+  0%   { transform: rotateY(180deg) scale(0.92); }
+  60%  { transform: rotateY(0deg) scale(1.06); }
+  100% { transform: rotateY(0deg) scale(1); }
+}
+.flip-reveal { animation: flipReveal 520ms var(--ez-spring) both; transform-style: preserve-3d; }
+
+@keyframes captureFly {
+  to { transform: translate(var(--cap-x), var(--cap-y)) scale(0.5); opacity: 0; }
+}
+.capture-fly { animation: captureFly 560ms var(--ez-out) forwards; pointer-events: none; }
+
+/* tatami glow when card lands */
+@keyframes tatamiGlow {
+  0% { box-shadow: 0 0 0 0 rgba(184, 148, 86, 0.5); }
+  100% { box-shadow: 0 0 0 24px rgba(184, 148, 86, 0); }
+}
+.tatami-glow { animation: tatamiGlow 720ms ease-out; border-radius: 8px; }
