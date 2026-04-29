@@ -18,6 +18,9 @@ out/
 *.war
 *.log
 
+# Gradle wrapper jar는 커밋되어야 한다(clone 후 ./gradlew 실행을 위해)
+!**/gradle/wrapper/gradle-wrapper.jar
+
 # Maven (in case)
 target/
 
