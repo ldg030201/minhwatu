@@ -1,0 +1,164 @@
+/* tokens.css — 민화투 design tokens */
+
+:lang(ko), html {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+:root {
+  /* type */
+  --font-sans: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: "Noto Serif KR", "Nanum Myeongjo", "Songti SC", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* radii */
+  --r-card: 8px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 22px;
+  --r-pill: 999px;
+
+  /* shadows (warm-tinted) */
+  --sh-1: 0 1px 2px rgba(50, 38, 22, 0.06), 0 1px 1px rgba(50, 38, 22, 0.04);
+  --sh-2: 0 2px 6px rgba(50, 38, 22, 0.08), 0 1px 2px rgba(50, 38, 22, 0.04);
+  --sh-3: 0 8px 24px rgba(50, 38, 22, 0.1), 0 2px 6px rgba(50, 38, 22, 0.06);
+  --sh-card: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 2px 4px rgba(50, 38, 22, 0.08), 0 1px 1px rgba(50, 38, 22, 0.06);
+  --sh-card-lift: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 12px 24px rgba(50, 38, 22, 0.18), 0 4px 8px rgba(50, 38, 22, 0.1);
+  --sh-card-legal: 0 0 0 2px rgba(199, 160, 89, 0.55), 0 8px 18px rgba(199, 160, 89, 0.25);
+
+  /* card geometry — 화투 2:3 (작고 두툼) */
+  --card-w: 56px;
+  --card-h: 84px;
+  --card-w-lg: 72px;
+  --card-h-lg: 108px;
+  --card-stroke: #1a1410;
+  --card-stroke-w: 1.6;
+
+  /* easing */
+  --ez-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ez-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* light theme (warm off-white, "거실 무드") */
+  --bg: #f1ebe0;
+  --bg-2: #ebe3d4;
+  --bg-3: #e3d9c6;
+  --bg-elev: #faf6ee;
+  --ink: #1b1a17;
+  --ink-2: #4a4740;
+  --ink-3: #6b6960;
+  --ink-4: #908d83;
+  --line: rgba(27, 26, 23, 0.1);
+  --line-2: rgba(27, 26, 23, 0.18);
+  --tatami-warp: rgba(184, 154, 102, 0.08);
+  --tatami-weft: rgba(184, 154, 102, 0.04);
+
+  /* UI accents — 톤 다운 (UI 패널·점수·진행률) */
+  --accent-red: #a84235;
+  --accent-red-soft: #c46b5e;
+  --accent-red-bg: #f5e2dd;
+  --accent-green: #3a6647;
+  --accent-green-soft: #6b8c75;
+  --accent-green-bg: #dde6dd;
+  --accent-gold: #b89456;
+  --accent-gold-soft: #d4b884;
+  --accent-gold-bg: #f1e6cc;
+  --accent-indigo: #3b4a6b;
+  --accent-indigo-bg: #d8dbe5;
+
+  /* HWATU card colors — high-chroma, flat, "한국 화투" 정체성 */
+  --hw-red:      #d11f1f;   /* 단풍·매화·홍단·일출 */
+  --hw-red-deep: #8a1414;
+  --hw-pink:     #f5a6c0;   /* 벚꽃 */
+  --hw-pink-deep:#d1547a;
+  --hw-yellow:   #f4c91c;   /* 보름달·국화 */
+  --hw-yellow-d: #c69416;
+  --hw-green:    #1f7a3a;   /* 송학·초단·등나무 잎 */
+  --hw-green-d:  #0e4a22;
+  --hw-blue:     #1f3a82;   /* 비·청단 */
+  --hw-blue-d:   #0d1f4d;
+  --hw-purple:   #5b2a82;   /* 5월 난초/창포 배경 */
+  --hw-black:    #14110d;   /* 흑싸리·산·가지 */
+  --hw-cream:    #f4ead2;   /* 카드 면 */
+  --hw-cream-d:  #d9c896;
+  --hw-brown:    #6b3a14;   /* 가지·사슴·돼지 */
+  --hw-stroke:   #14110d;
+
+  /* card faces */
+  --card-face: #f4ead2;
+  --card-face-edge: #c8b078;
+  --card-back: #8a1414;
+  --card-back-edge: #4a0a0a;
+}
+
+[data-theme="dark"] {
+  /* dark theme (charcoal, "카페 무드") */
+  --bg: #1a1816;
+  --bg-2: #211e1a;
+  --bg-3: #2a2620;
+  --bg-elev: #25221d;
+  --ink: #f1ece1;
+  --ink-2: #d6cfc0;
+  --ink-3: #a8a293;
+  --ink-4: #7a766c;
+  --line: rgba(241, 236, 225, 0.1);
+  --line-2: rgba(241, 236, 225, 0.18);
+  --tatami-warp: rgba(184, 154, 102, 0.05);
+  --tatami-weft: rgba(184, 154, 102, 0.02);
+
+  --accent-red: #c8534a;
+  --accent-red-soft: #a04339;
+  --accent-red-bg: #3a201d;
+  --accent-green: #6b9a7a;
+  --accent-green-soft: #4a6b54;
+  --accent-green-bg: #1f2e24;
+  --accent-gold: #d4b075;
+  --accent-gold-soft: #a8884f;
+  --accent-gold-bg: #382e1d;
+  --accent-indigo: #6a7a9c;
+  --accent-indigo-bg: #1f2433;
+
+  --card-face: #efe1b8;
+  --card-face-edge: #b89856;
+  --card-back: #6b0e0e;
+  --card-back-edge: #2e0606;
+
+  --sh-card: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 1px rgba(0, 0, 0, 0.3);
+  --sh-card-lift: 0 1px 0 rgba(255, 255, 255, 0.08) inset, 0 12px 28px rgba(0, 0, 0, 0.6), 0 4px 8px rgba(0, 0, 0, 0.4);
+  --sh-card-legal: 0 0 0 2px rgba(212, 176, 117, 0.6), 0 8px 18px rgba(212, 176, 117, 0.25);
+}
+
+/* base */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+button { font-family: inherit; }
+::selection { background: var(--accent-gold-bg); color: var(--ink); }
+
+/* tatami / paper texture background */
+.bg-tatami {
+  background-color: var(--bg);
+  background-image:
+    repeating-linear-gradient(0deg, var(--tatami-warp) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, var(--tatami-weft) 0 1px, transparent 1px 4px),
+    radial-gradient(ellipse at 50% 30%, rgba(255, 245, 220, 0.35), transparent 60%);
+}
+[data-theme="dark"] .bg-tatami {
+  background-image:
+    repeating-linear-gradient(0deg, var(--tatami-warp) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, var(--tatami-weft) 0 1px, transparent 1px 4px),
+    radial-gradient(ellipse at 50% 30%, rgba(60, 48, 30, 0.5), transparent 60%);
+}
+
+/* utility */
+.tabnum { font-variant-numeric: tabular-nums; }
+.serif { font-family: var(--font-serif); }
+.mono { font-family: var(--font-mono); }

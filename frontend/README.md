@@ -2,7 +2,7 @@
 
 본 프로젝트의 프런트엔드 모듈. **Vite + React 18 + TypeScript + Tailwind v4 + Zustand + Framer Motion + React Router v7** 스택으로 동작합니다.
 
-> 이번 PR로 빈 스캐폴딩이 들어왔습니다. 디자인 시안([preview/](preview/))의 컴포넌트 마이그레이션은 **다음 PR** 입니다.
+> 디자인 시안의 1차 마이그레이션이 들어와 `/game`, `/settlement` 라우트가 실제로 동작합니다. 시안 코드는 `src/legacy/` 아래에 원형 보존 중이며, 점진적으로 `src/components`/`src/store` 등으로 분리합니다.
 
 ---
 
@@ -44,7 +44,8 @@ frontend/
 │   ├── setup-tests.ts    Vitest 테스트 셋업 (jest-dom 매처)
 │   ├── App.test.tsx      샘플 단위 테스트
 │   └── vite-env.d.ts
-├── preview/              디자인 시안(원형 보존 — preview/README.md 참조)
+├── preview/              디자인 시안 원본(정적 HTML — preview/README.md 참조)
+├── src/legacy/           시안의 JSX를 .tsx로 옮겨놓은 1차 마이그 코드(점진 분리 대상)
 ├── package.json
 ├── pnpm-lock.yaml
 ├── biome.json            Biome 린트/포맷 설정
@@ -54,7 +55,22 @@ frontend/
 └── vite.config.ts        Vite + Tailwind 플러그인 + Vitest 설정
 ```
 
-> 다음 PR에서 추가 예정: `src/components/`, `src/store/`, `src/net/`, `src/lib/`, `src/domain/`. 자세한 매핑은 [preview/README.md §4](preview/README.md) 참조.
+## src/legacy/ 운영 정책
+
+`src/legacy/` 안의 코드는 **시안에서 그대로 옮겨온 1차 마이그**입니다.
+
+- 모든 `.tsx` 파일 상단에 `// @ts-nocheck` — strict 검증을 임시 보류(점진 타입화 예정)
+- `biome.json`의 `files.ignore`에 `src/legacy/**` 등록 — 린트/포맷 대상에서 제외
+- 외부에 노출되는 export는 `HwatuCard`, `HwatuCardBack`, `GameBoard`, `Settlement`, `useTweaks`, `TweaksPanel`, `TweakSection`, `TweakRadio`, …
+- 시안 css 4종(`tokens.css`/`card.css`/`board.css`/`settlement.css`)은 `src/legacy/styles/`로 옮기고 `src/main.tsx`에서 import
+
+### 점진 분리 계획 (다음 PR들)
+1. `src/legacy/hwatu-card.tsx` → `src/components/HwatuCard/` (월별 motif 분리, props 타입 도입)
+2. `src/legacy/tweaks-panel.tsx` → `src/components/TweaksPanel/` + `src/store/tweaks.ts`(Zustand로 useTweaks 대체)
+3. `src/legacy/game-board.tsx` → `src/routes/Game.tsx` 본격 + 하위 컴포넌트(`Hand`, `Field`, `Pile`, `Scoreboard`, `MatchPickModal`, `HintBar`, `PlayerStrip`)
+4. `src/legacy/settlement.tsx` → `src/routes/Settlement.tsx` 본격 + `DanBurst`, `CategoryShelf`
+5. `src/legacy/cards-data.ts` → `src/domain/card.ts`(타입) + `src/lib/cards/catalog.ts`
+6. `src/legacy/styles/*.css` → 컴포넌트별 Tailwind 클래스로 점진 변환 후 삭제
 
 ## 스택 결정 요약
 

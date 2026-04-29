@@ -1,18 +1,51 @@
 import { Link } from 'react-router-dom';
 
+import { GameBoard } from '@/legacy/game-board';
+import { TweakRadio, TweakSection, TweaksPanel, useTweaks } from '@/legacy/tweaks-panel';
+import { TWEAK_DEFAULTS } from '@/lib/preview-data';
+
 export function GameRoute() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
   return (
-    <main className="mx-auto flex min-h-dvh max-w-5xl flex-col gap-6 px-6 py-10">
-      <Link to="/" className="text-meta text-ink-3 hover:text-ink">
-        ← 로비
-      </Link>
-      <h2 className="font-serif text-3xl font-bold text-ink">게임 보드 (stub)</h2>
-      <p className="text-ink-2 leading-relaxed">
-        디자인 시안의 게임 보드는{' '}
-        <code className="rounded bg-bg-2 px-2 py-0.5 font-mono">frontend/preview/</code>에 보관되어 있고, 다음
-        PR에서 이 라우트로 이관됩니다. 컴포넌트 트리/타입은
-        <code className="mx-1 rounded bg-bg-2 px-2 py-0.5 font-mono">frontend/preview/HANDOFF.md</code> 참조.
-      </p>
-    </main>
+    <div className="relative">
+      <nav className="px-4 pt-3">
+        <Link to="/" className="text-meta text-ink-3 hover:text-ink">
+          ← 로비
+        </Link>
+      </nav>
+
+      <GameBoard tweaks={t} screen="board" onScreen={() => undefined} />
+
+      <TweaksPanel title="Tweaks">
+        <TweakSection label="카드">{null}</TweakSection>
+        <TweakRadio
+          label="추상화"
+          value={t.cardAbstraction}
+          options={['minimal', 'mid', 'painterly']}
+          onChange={(v: string) => setTweak('cardAbstraction', v)}
+        />
+        <TweakRadio
+          label="라벨"
+          value={t.labelMode}
+          options={['hanja', 'hangul', 'none']}
+          onChange={(v: string) => setTweak('labelMode', v)}
+        />
+        <TweakSection label="보드">{null}</TweakSection>
+        <TweakRadio
+          label="레이아웃"
+          value={t.boardLayout}
+          options={['grid', 'hybrid', 'free']}
+          onChange={(v: string) => setTweak('boardLayout', v)}
+        />
+        <TweakSection label="모션">{null}</TweakSection>
+        <TweakRadio
+          label="강도"
+          value={t.animationIntensity}
+          options={['minimal', 'mid', 'full']}
+          onChange={(v: string) => setTweak('animationIntensity', v)}
+        />
+      </TweaksPanel>
+    </div>
   );
 }

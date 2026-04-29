@@ -8,6 +8,11 @@ import { LobbyRoute } from '@/routes/Lobby';
 import { SettlementRoute } from '@/routes/Settlement';
 
 import '@/styles/index.css';
+// 시안 css 4종(원형 보존). 점진적으로 Tailwind 클래스로 대체.
+import '@/legacy/styles/tokens.css';
+import '@/legacy/styles/card.css';
+import '@/legacy/styles/board.css';
+import '@/legacy/styles/settlement.css';
 
 const router = createBrowserRouter([
   {

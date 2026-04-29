@@ -8,7 +8,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "ignore": ["dist", "node_modules", "preview/**"]
+    "ignore": ["dist", "node_modules", "preview/**", "src/legacy/**"]
   },
   "formatter": {
     "enabled": true,
